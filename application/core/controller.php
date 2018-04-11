@@ -1,5 +1,5 @@
 <?php
-require_once 'application/libs/controller_interface.php';
+require_once 'application/core/controller_interface.php';
 
 abstract class Controller implements ControllerInterface {
     public $db = null;
@@ -13,9 +13,9 @@ abstract class Controller implements ControllerInterface {
         $this->db = new PDO(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS, $options);
     }
 
-    public function loadModel($model_name) {
-        require 'application/models/' . strtolower($model_name) . '.php';
-
+    public function loadModuleModel($model_name) {
+        require 'application/models/'.strtolower($model_name).'.php';
+		$model_name = str_replace('_', '', $model_name);
         return new $model_name($this->db);
     }
 	
