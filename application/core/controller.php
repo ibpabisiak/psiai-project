@@ -2,10 +2,12 @@
 require_once 'application/core/controller_interface.php';
 
 abstract class Controller implements ControllerInterface {
-    public $db = null;
-
+    protected $db = null;
+	protected $view = null;
+	
     function __construct() {
         $this->connecToDatabase(); 
+		$this->view = new View();
     }
 
 	private function connecToDatabase() {
@@ -18,12 +20,5 @@ abstract class Controller implements ControllerInterface {
 		$model_name = str_replace('_', '', $model_name);
         return new $model_name($this->db);
     }
-	
-	protected function checkLogin() {
-		//TODO 
-		
-		return false;
-	}
 
-	
 }
