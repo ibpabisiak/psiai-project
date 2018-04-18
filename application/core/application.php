@@ -34,7 +34,7 @@ class Application {
         } else {
 			
 			//TODO strona ktora nie istnieje
-			echo "Ta strona nie istnieje lub nie masz uprawnień głąbie";
+			echo "Ta strona nie istnieje lub nie masz do niej uprawnień.";
         }
     }
 
