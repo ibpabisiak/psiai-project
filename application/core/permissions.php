@@ -35,7 +35,7 @@ class Permissions {
 							);
 	}
 	
-	public function checkPermissions($module, $action) {
+	public function CheckPermissions($module, $action) {
 		$result = false;
 		
 		switch($action) {

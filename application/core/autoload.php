@@ -16,7 +16,7 @@ require_once 'application/core/view.php';
 //load other files
 require_once 'application/controller/attendance.php';
 require_once 'application/controller/login.php';
-
+require_once 'application/models/_common/files_model.php';
 
 if(!isset($_SESSION[USER_SESSION])) {
 	$_SESSION[USER_SESSION] = null;

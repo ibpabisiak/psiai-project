@@ -17,3 +17,6 @@ define('PERMISSIONS_WRITE_IDX', 0);
 define('PERMISSIONS_READ_IDX', 1);
 
 define('HOMEPAGE_MODULE', 'attendance');
+
+define('FILES_TARGET_DIR', 'uploaded_files/');
+define('MAX_FILESIZE', 50000000);
