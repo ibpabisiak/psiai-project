@@ -1,14 +1,12 @@
 <?php
+//load application modules
+require_once 'application/core/autoload.php';
 
-
-
-session_start();
-
-require 'application/config/config.php';
-require 'application/core/global_functions.php';
-require 'application/core/application.php';
-require 'application/core/controller.php';
-
-
-
+/*
+if(null == $_SESSION[USER_SESSION]) 
+	echo "SESSION IS NULL <br /> <br /> <br />";
+else
+	echo "SESSION IS NOT NULL <br /> <br /> <br />";
+*/
+//start application
 $app = new Application();

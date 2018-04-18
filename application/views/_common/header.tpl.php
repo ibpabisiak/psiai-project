@@ -41,13 +41,35 @@
 		<h1>Company Manager</h1>
 		
 		<ul>
-			<li><a href="index.php?module=login">login</a></li>
-			<li><a href="index.php?module=attendance">attendance</a></li>
-			<li><a href="index.php?module=documents">documents</a></li>
-			<li><a href="index.php?module=equipment">equipment</a></li>
-			<li><a href="index.php?module=invoices">invoices</a></li>
-			<li><a href="index.php?module=invoicescatalog">invoices catalog</a></li>
-			<li><a href="index.php?module=licenses">licenses</a></li>
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("login"))
+				echo "<li><a href=\"index.php?module=login&page=logout\">Wyloguj</a></li>"; ?>
+			
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("attendance"))
+				echo "<li><a href=\"index.php?module=attendance\">attendance</a></li>"; ?>
+			
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("documents"))
+				echo "<li><a href=\"index.php?module=documents\">documents</a></li>"; ?>
+			
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("equipment"))
+				echo "<li><a href=\"index.php?module=equipment\">equipment</a></li>"; ?>
+			
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("invoices"))
+				echo "<li><a href=\"index.php?module=invoices\">invoices</a></li>"; ?>
+			
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("invoicescatalog"))
+				echo "<li><a href=\"index.php?module=invoicescatalog\">invoicescatalog</a></li>"; ?>
+			
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("licenses"))
+				echo "<li><a href=\"index.php?module=licenses\">licenses</a></li>"; ?>
+			
 		</ul>
 		
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
