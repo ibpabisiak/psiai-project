@@ -9,16 +9,29 @@ class LoginModel {
 	}
 
 	function login($user_email, $user_password) {
-		$query = "SELECT * FROM `users` WHERE `email` = '".$user_email."' AND `password` = '".hash(PASSWORDS_HASH, $user_password)."' LIMIT 1;";
-		$dbh = $this->db->prepare($query);
-		$dbh->execute();
-		$_SESSION['is_logged'] = (1 == $dbh->rowCount());
+		$result = false;
+		if(!empty($user_email) && !empty($user_password) && null == $_SESSION[USER_SESSION]) {
+			$query = "	SELECT * FROM users 
+						JOIN groups ON users.group_id = groups.id 
+						WHERE users.email = '".$user_email."' AND users.password = '".hash(PASSWORDS_HASH, $user_password)."' LIMIT 1";
+						
+			$dbh = $this->db->prepare($query);
+			$dbh->execute();
+			
+			if(1 == $dbh->rowCount()) {
+				$user_row = $dbh->fetch(PDO::FETCH_ASSOC);
+				$user = new User($user_row);
+				$_SESSION[USER_SESSION] = serialize($user);
+				$result = $user->IsLogged();
+			}
+
+		}
 		
-		return $_SESSION['is_logged'];
+		return $result;
 	}
 	
-	function logout() {
-		$_SESSION['is_logged'] = false;
+	public function logout() {
+		$_SESSION[USER_SESSION] = null;
 	}
 
 }
