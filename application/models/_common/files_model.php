@@ -24,6 +24,19 @@ class Files {
 		return $result;
 	}
 	
+	public function DeleteFile($file_id) {
+		$query = "SELECT * FROM `files` WHERE `id` = ".$file_id." LIMIT 1";
+		$dbh = $this->db->prepare($query);
+		$dbh->execute();
+		$row = $dbh->fetch(PDO::FETCH_ASSOC);
+			
+		unlink(FILES_TARGET_DIR.$row['unique_filename']);
+
+		$query = "DELETE FROM `files` WHERE `id` = ".$file_id." LIMIT 1";
+		$dbh = $this->db->prepare($query);
+		$dbh->execute();
+	}
+	
 	private function UploadFile($file) {
 		$result = false;
 		$this->original_filename = basename($file["name"]);
