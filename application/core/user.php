@@ -58,3 +58,7 @@ class User {
 		return $this->group_id;
 	}
 }
+
+
+
+

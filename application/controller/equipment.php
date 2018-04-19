@@ -18,3 +18,5 @@ class Equipment extends Controller {
 	}
 	
 }
+
+

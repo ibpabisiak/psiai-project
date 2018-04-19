@@ -8,3 +8,6 @@ class View {
         require_once "application/views/_common/footer.tpl.php";			
 	}
 }
+
+
+

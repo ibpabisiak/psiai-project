@@ -17,3 +17,7 @@ class Functions {
 		return $result;
 	}
 }
+
+
+
+

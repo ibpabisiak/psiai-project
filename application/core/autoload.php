@@ -21,3 +21,5 @@ require_once 'application/models/_common/files_model.php';
 if(!isset($_SESSION[USER_SESSION])) {
 	$_SESSION[USER_SESSION] = null;
 }
+
+

@@ -18,3 +18,5 @@ class InvoicesCatalog extends Controller {
 	}
 	
 }
+
+

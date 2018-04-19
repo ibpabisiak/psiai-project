@@ -20,3 +20,6 @@ define('HOMEPAGE_MODULE', 'attendance');
 
 define('FILES_TARGET_DIR', 'uploaded_files/');
 define('MAX_FILESIZE', 50000000);
+
+
+
