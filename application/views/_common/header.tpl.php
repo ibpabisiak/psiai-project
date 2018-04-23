@@ -49,15 +49,7 @@
 				echo "              <li class=\"nav-item\">
                 <a class=\"nav-link\" href=\"index.php?module=invoices\">
                   <span data-feather=\"shopping-cart\"></span>
-                  Faktury sprzedaży
-                </a>
-              </li>"; ?>
-			
-			<?php if(Functions::GetUserSession()->IsEntitledToRead("invoices"))
-				echo "              <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"index.php?module=invoices\">
-                  <span data-feather=\"shopping-cart\"></span>
-                  Faktury kupna
+                  Faktury sprzedaży i kupna
                 </a>
               </li>"; ?>
 			
