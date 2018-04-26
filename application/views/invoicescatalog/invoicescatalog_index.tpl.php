@@ -1,5 +1,5 @@
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             
             
@@ -28,4 +28,23 @@
               </tbody>
             </table>
           </div>
+	      
+	      
+	      
+	      <h1>Wyszukiwanie faktur</h1>
+    <form action="wyniki.php" method="post">
+      Wyszukaj według:
+      <select name="metoda">
+       <option value="invoice_id" />invoice_id
+       <option value="contractor_id" />contractor_id
+       <option value="file_id" />file_id
+      </select>
+      <br /><br />
+      Szukane wyrażenie:
+      <input type="text" name="wyrazenie" />
+      <input type="submit" name="wyszukaj" />
+    </form>
+	      
+	      
+	      
         </main>
