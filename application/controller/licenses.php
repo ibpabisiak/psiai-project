@@ -2,20 +2,17 @@
 
 class Licenses extends Controller {
 
-	public function index() {
-        
-		require 'application/views/_common/header.tpl.php';
-        require 'application/views/licenses/licenses_index.tpl.php';
-        require 'application/views/_common/footer.tpl.php';		
-	}
-	
-	public function first_page() {
-		echo "hehe";
-	}
-	
-	public function second_page() {
-		echo "hehe";
-	}
+	  public function index() {
+        if(Functions::GetUserSession()->IsEntitledToWrite('licenses')) {
+            $invoices_model = $this->loadModuleModel('licenses_model');
+            $invoices_list = $invoices_model->listAll();
+            require 'application/views/_common/header.tpl.php';
+            require 'application/views/licenses/licenses_index.tpl.php';
+            require 'application/views/_common/footer.tpl.php';
+        } else {
+            exit("Nie masz do tego uprawnień");
+        }
+    }
 	
 }
 
