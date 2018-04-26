@@ -6,12 +6,12 @@
           </div>
 
           
-          <h2>Katalog faktur.</h2>
+          <h2>Katalog faktur</h2>
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
-                  <th>Numer faktury</th>
+                  <th>Numer faktury test </th>
                   <th>Nazwa faktury</th>
                   <th>Kontrahent</th>
                   <th>Typ</th>
