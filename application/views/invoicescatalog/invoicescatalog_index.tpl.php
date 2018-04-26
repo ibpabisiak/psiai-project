@@ -6,7 +6,7 @@
           </div>
 
           
-          <h2>Katalog faktur</h2>
+          <h2>Katalog faktur.</h2>
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
