@@ -9,6 +9,8 @@
           <h2>Katalog faktur</h2>
           <div class="table-responsive">
             <table class="table table-striped table-sm">
+
+			  
               <thead>
                 <tr>
                   <th>Numer faktury test </th>
@@ -22,7 +24,8 @@
                   <th></th>
                   <th></th>
                 </tr>
-              </thead>
+              </thead>			  
+			  
               <tbody>
 				<?php echo $invoices_list; ?>
               </tbody>

@@ -69,19 +69,43 @@
                 </a>
               </li>"; ?>
 			
-			<?php if(Functions::GetUserSession()->IsEntitledToRead("equipment"))
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("documents"))
 				echo "              <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"index.php?module=equipment\">
-                  <span data-feather=\"layers\"></span>
-                  Sprzęt
+                <a class=\"nav-link\" href=\"index.php?module=documents&page=documents_catalog\">
+                  <span data-feather=\"file\"></span>
+                  Katalog dokumentów
+                </a>
+              </li>"; ?>
+			  
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("licenses"))
+				echo "              <li class=\"nav-item\">
+                <a class=\"nav-link\" href=\"index.php?module=licenses\">
+                  <span data-feather=\"clipboard\"></span>
+                  Licencje
                 </a>
               </li>"; ?>
 			
 			<?php if(Functions::GetUserSession()->IsEntitledToRead("licenses"))
 				echo "              <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"index.php?module=licenses\">
-                  <span data-feather=\"layers\"></span>
-                  Licencje
+                <a class=\"nav-link\" href=\"index.php?module=licenses&page=licenses_catalog\">
+                  <span data-feather=\"clipboard\"></span>
+                  Katalog licencji
+                </a>
+              </li>"; ?>
+			  
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("equipment"))
+				echo "              <li class=\"nav-item\">
+                <a class=\"nav-link\" href=\"index.php?module=equipment\">
+                  <span data-feather=\"server\"></span>
+                  Sprzęt
+                </a>
+              </li>"; ?>
+			
+			<?php if(Functions::GetUserSession()->IsEntitledToRead("equipment"))
+				echo "              <li class=\"nav-item\">
+                <a class=\"nav-link\" href=\"index.php?module=equipment&page=equipment_catalog\">
+                  <span data-feather=\"server\"></span>
+                  Katalog sprzętu
                 </a>
               </li>"; ?>
 			  

@@ -27,7 +27,7 @@ class AttendanceModel {
                   <td>" . $row['date'] . "</td>
                   <td>" . $row['entry_hour'] . "</td>
                   <td>" . $row['leave_hour'] . "</td>
-                  <td>".  $row[''].  "</td>
+                  <td></td>
                   <td>" . $row['addons'] . "</td>
                 </tr>			
 			";
