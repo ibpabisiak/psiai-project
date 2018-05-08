@@ -35,7 +35,7 @@
 	      
 	      
 	      <h1>Wyszukiwanie faktur</h1>
-    <form action="wyszukiwarka.php" method="post">
+    <form action="application/controller/wyszukiwarka.php" method="post">
       Wyszukaj według:
       <select name="metoda">
        <option value="invoice_id" />invoice_id

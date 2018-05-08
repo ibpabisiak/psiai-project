@@ -43,13 +43,8 @@ class LicensesModel {
     public function listAll()
     {
         $query = "
-<<<<<<< HEAD
-				SELECT * FROM licenses 				
-=======
 				SELECT * FROM licenses 
 										JOIN files ON licenses.file_id = files.id  
-							
->>>>>>> 59009c5dea6da6e4562d2d853459fbd6b2e2a904
 		";
         $dbh = $this->db->prepare($query);
         $dbh->execute();
@@ -67,13 +62,9 @@ class LicensesModel {
                   <td>" . $row['licenses_till'] . "</td>
                   <td>" . $row['another_note'] . "</td>
                   <td>" . $row['whos_is_licenses'] . "</td>
-<<<<<<< HEAD
-                  <td><a href=\"index.php?module=licenses&page=edit_licenses&invoice_id=" . $row['id_invoice'] . "  \">Edytuj licencje</a></td>
-=======
                   <td><a href=\" ".FILES_TARGET_DIR.$row['unique_filename']."\" target=\"_blank\">".$row['original_filename']."</a></td>
                   <td><a href=\"index.php?module=licenses&page=delete_license&license_id=".$row['license_id']."  \">Usuń fakturę</a></td>
                   <td><a href=\"index.php?module=licenses&page=edit_license&license_id=".$row['license_id']." \">Edytuj fakturę</a></td>
->>>>>>> 59009c5dea6da6e4562d2d853459fbd6b2e2a904
                 </tr>			
 			";
 
@@ -86,7 +77,7 @@ class LicensesModel {
 
     public function GetlicensesData($id_invoice)
     {
-        $query = "SELECT * FROM `licenses` WHERE `id_invoice` = " . $id_invoice . " ";
+        $query = "SELECT * FROM `licenses` WHERE  `license_id` = '".$id_invoice."'";
         $dbh = $this->db->prepare($query);
         $dbh->execute();
 

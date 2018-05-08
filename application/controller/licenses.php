@@ -15,7 +15,7 @@ class Licenses extends Controller {
 
 
 
-    public function edit_licenses()
+    public function edit_license()
     {
         if (Functions::GetUserSession()->IsEntitledToWrite('licenses')) {
 

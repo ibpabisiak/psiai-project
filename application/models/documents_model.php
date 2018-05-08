@@ -12,19 +12,17 @@ class DocumentsModel {
 	}
     
 
-<<<<<<< HEAD
-
 
 
     public function GetDocumentsData($invoice_id)
     {
-        $query = "SELECT * FROM `documents` WHERE `invoice_id` = " . $invoice_id . " ";
+        $query = "SELECT * FROM `documents` WHERE `document_id` = '" . $invoice_id . "' ";
         $dbh = $this->db->prepare($query);
         $dbh->execute();
 
         $result = array();
         while ($row = $dbh->fetch(PDO::FETCH_ASSOC)) {
-            $result['document_user_id '] = $row['document_user_id '];
+            $result['document_user_id'] = $row['document_id'];
             $result['file_id'] = $row['file_id'];
             $result['notes'] = $row['notes'];
             $result['date'] = $row['date'];
@@ -35,7 +33,7 @@ class DocumentsModel {
 
     public function UpdateDocuments($dbh, $document_user_id , $file_id , $notes, $date )
     {
-        $dbh = $this->db->prepare("UPDATE `invoices` SET `document_user_id ` = :?,`file_id` = :? ,`notes` = ?,`date` = :?,
+        $dbh = $this->db->prepare("UPDATE `invoices` SET `document_user_id` = :?,`file_id` = :? ,`notes` = ?,`date` = :?,
                                    WHERE `invoice_id`=1 ");
 
         bindValue(':contractor_id', $document_user_id , PDO::PARAM_STR);
@@ -58,9 +56,7 @@ class DocumentsModel {
 
 
 
-}
-=======
->>>>>>> 59009c5dea6da6e4562d2d853459fbd6b2e2a904
+
 
 
 	public function AddDocument($file, $document_id, $document_notes) {

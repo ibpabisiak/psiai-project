@@ -8,20 +8,19 @@ class Documents extends Controller {
         require 'application/views/documents/documents_index.tpl.php';
         require 'application/views/_common/footer.tpl.php';		
 	}
-<<<<<<< HEAD
 
-    public function edit_Documents()
+    public function edit_Document()
     {
         if (Functions::GetUserSession()->IsEntitledToWrite('documents')) {
 
             $invoices_model = $this->loadModuleModel('documents_model');
-            $a = $invoices_model->GetdocumentsData($_GET['invoice_id']);
+            $a = $invoices_model->GetdocumentsData($_GET['docment_id']);
 
-            var_dump($invoices_model->GetdocumentsData($_GET['invoice_id']));
+//            var_dump($invoices_model->GetdocumentsData($_GET['invoice_id']));
 
 
             require 'application/views/_common/header.tpl.php';
-            require 'application/views/documents/edit_documents.tpl.php';
+            require 'application/views/documents/edit_document.tpl.php';
             require 'application/views/_common/footer.tpl.php';
         } else {
             exit("Nie masz do tego uprawnień");
@@ -51,7 +50,6 @@ class Documents extends Controller {
 
 
     }
-=======
 	
 	public function documents_catalog() {
 		
@@ -89,7 +87,7 @@ class Documents extends Controller {
 		}
 	}
 	
->>>>>>> 59009c5dea6da6e4562d2d853459fbd6b2e2a904
+
 }
 
 

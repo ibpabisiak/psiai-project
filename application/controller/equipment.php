@@ -14,7 +14,7 @@ class Equipment extends Controller {
             exit("Nie masz do tego uprawnień");
         }
     }
-<<<<<<< HEAD
+
 
 
 
@@ -69,12 +69,6 @@ class Equipment extends Controller {
 
     }
 
-
-
-
-
-
-=======
 	
 	public function equipment_catalog() {
 		
@@ -86,7 +80,7 @@ class Equipment extends Controller {
             require 'application/views/_common/footer.tpl.php';		
 	}
 	
->>>>>>> 59009c5dea6da6e4562d2d853459fbd6b2e2a904
+
 }
 
 
