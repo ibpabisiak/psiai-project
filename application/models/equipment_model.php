@@ -11,6 +11,13 @@ class EquipmentModel {
         $this->files = new Files($db);
     }
 
+
+	public function add_equipment($inventary_number,$description,$serial_number,$date,$warranty,$netto_value,$another_note) {
+		$query = "INSERT INTO `equipment`(`inventary_number`, `description`, `serial_number`, `date_of_purschure`, `invoice_id`, `warranty`, `whos_is_equipment`, `another_note`, `netto_value`) 
+		VALUES ('".$inventary_number."','".$description."','".$serial_number."','".$date."','0','".$warranty."','0','".$another_note."','".$netto_value."')";
+		$this->db->query($query);
+	}
+	
     public function listAll()
     {
         $query = "
@@ -31,10 +38,11 @@ class EquipmentModel {
                   <td>" . $row['date_of_purschure'] . "</td>
                   <td>" . $row['invoice_id'] . "</td>
                   <td>" . $row['warranty'] . "</td>
-                  <td>" . $row['another_note'] . "</td>
-                  <td>" . $row['whos_is_equipment'] . "</td>
                   <td>" . $row['netto_value'] . "zl</td>
-                  <td><a href=\"index.php?module=equipment&page=edit_equipment&invoice_id=" . $row['invoice_id'] . "  \">Edytuj fakturę</a></td>
+                  <td>" . $row['whos_is_equipment'] . "</td>
+                  <td>" . $row['another_note'] . "</td>
+                  <td><a href=\"index.php?module=equipment&page=delete_equipment&eq_id=" . $row['eq_id'] . "  \">Usuń</a></td>
+                  <td><a href=\"index.php?module=equipment&page=edit_equipment&invoice_id=" . $row['invoice_id'] . "  \">Edytuj</a></td>
                 </tr>			
 			";
 

@@ -15,8 +15,11 @@ class Equipment extends Controller {
         }
     }
 
-
-
+	public function add_equipment() {
+		$model = $this->loadModuleModel('equipment_model');
+		$model->add_equipment($_POST['inventary_number'],$_POST['description'],$_POST['serial_number'],$_POST['date'],$_POST['warranty'],$_POST['netto_value'],$_POST['another_note']);
+		header("Location: index.php?module=equipment&page=equipment_catalog");
+	}
 
 
     public function edit_equipment()
