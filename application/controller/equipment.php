@@ -21,6 +21,11 @@ class Equipment extends Controller {
 		header("Location: index.php?module=equipment&page=equipment_catalog");
 	}
 
+	public function delete_equipment() {
+		$model = $this->loadModuleModel('equipment_model');
+		$model->delete_equipment($_GET['eq_id']);
+		header("Location: index.php?module=equipment&page=equipment_catalog");
+	}
 
     public function edit_equipment()
     {

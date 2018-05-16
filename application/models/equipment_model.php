@@ -18,6 +18,12 @@ class EquipmentModel {
 		$this->db->query($query);
 	}
 	
+	public function delete_equipment($eq_id) {
+		$query = "DELETE FROM `equipment` WHERE `eq_id` = ".$eq_id." LIMIT 1";
+		$this->db->query($query);
+	}	
+	
+	
     public function listAll()
     {
         $query = "
