@@ -20,7 +20,7 @@ class Licenses extends Controller {
         if (Functions::GetUserSession()->IsEntitledToWrite('licenses')) {
 
             $invoices_model = $this->loadModuleModel('licenses_model');
-            $a = $invoices_model->GetlicensesData($_GET['id_invoice']);
+            $a = $invoices_model->GetlicensesData($_GET['invoice_id']);
 
             require 'application/views/_common/header.tpl.php';
             require 'application/views/licenses/edit_licenses.tpl.php';
@@ -74,20 +74,68 @@ class Licenses extends Controller {
 	
 	public function add_license() {
 		if(Functions::GetUserSession()->IsEntitledToWrite('licenses')) {
-			$license_model = $this->loadModuleModel('licenses_model');		
-
-			$license_model->AddLicense(
-				$_FILES["fileToUpload"],
-				$_POST['description'],
-				$_POST['serial_number'],
-				$_POST['technical_support'],
-				$_POST['licenses_till'],
-				$_POST['whos_is_licenses'],
-				$_POST['another_note']
-			);
+            $license_model = $this->loadModuleModel('licenses_model');
 
 
-			header("Location: index.php?module=licenses&page=licenses_catalog");	
+            $description = 0;
+            $serial_number = 0;
+            $technical_support = 0;
+            $licenses_till = 0;
+            $whos_is_licenses = 0;
+            $another_note = 0;
+
+            if (empty($_POST['description'])) {
+                $description = 1;
+            } else {
+                $description = 0;
+            }
+
+            if (empty($_POST['serial_number'])) {
+                $serial_number = 1;
+            } else {
+                $serial_number = 0;
+            }
+
+
+            if (empty($_POST['technical_support'])) {
+                $technical_support = 1;
+            } else {
+                $technical_support = 0;
+            }
+
+            if (empty($_POST['licenses_till'])) {
+                $licenses_till = 1;
+            } else {
+                $licenses_till = 0;
+            }
+
+            if (empty($_POST['whos_is_licenses'])) {
+                $whos_is_licenses = 1;
+            } else {
+                $whos_is_licenses = 0;
+            }
+
+
+
+            if (   ($description == 0) && ($serial_number == 0) && ($technical_support == 0) && ($licenses_till == 0) && ($whos_is_licenses == 0) ) {
+
+            $license_model->AddLicense(
+                $_FILES["fileToUpload"],
+                $_POST['description'],
+                $_POST['serial_number'],
+                $_POST['technical_support'],
+                $_POST['licenses_till'],
+                $_POST['whos_is_licenses'],
+                $_POST['another_note']
+            );
+
+                header("Location: index.php?module=licenses&page=licenses_catalog");
+        } else {
+
+                require 'application/views/_common/header.tpl.php';
+                require 'application/views/licenses/licenses_validation.tpl.php';
+                require 'application/views/_common/footer.tpl.php';
+            }
 		}
 	}
 	
