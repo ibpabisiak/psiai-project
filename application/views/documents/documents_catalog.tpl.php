@@ -24,4 +24,18 @@
               </tbody>
             </table>
           </div>
+		
+		 <h1>Wyszukiwanie Dokumentu</h1>
+            <form action="application/controller/wyszukiwarkaDokument.php" method="post">
+                Wyszukaj według:
+                <select name="metoda">
+                    <option value="id" />id
+                    <option value="description" />description
+                    <option value="file_category_id" />file_category_id
+                </select>
+                <br /><br />
+                Szukane wyrażenie:
+                <input type="text" name="wyrazenie" />
+                <input type="submit" name="wyszukaj" />
+		
         </main>
