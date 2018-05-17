@@ -1,0 +1,41 @@
+<?php
+      $metoda = $_POST['metoda'];
+      $wyrazenie = $_POST['wyrazenie'];
+      $wyrazenie = trim($wyrazenie);
+      if (!$metoda || !$wyrazenie)
+      {
+        echo 'Brak parametrów wyszukiwania, wróć do poprzednej strony i spóbuj ponownie!';
+        exit;
+      }
+      if (!get_magic_quotes_gpc())
+      {
+        $metoda = addslashes($metoda);
+        $wyrazenie = addslashes($wyrazenie);
+      }
+      @ $db = new mysqli('localhost','psiai','0987654321','psiai_db');
+
+      if (mysqli_connect_errno())
+      {
+        echo 'Połączenie z bazą nie powiodło się. Spóbuj ponownie';
+        exit;
+      }
+      $db->query('SET NAMES utf8');
+      $db->query('SET CHARACTER_SET utf8_unicode_ci');
+      $zapytanie = "select * from equipment where ".$metoda. " like '%".$wyrazenie."%'";
+      $wynik = $db->query($zapytanie);
+      $ile_znaleziono = $wynik->num_rows;
+      echo '<p> Liczba znalezionego sprzetu: '.$ile_znaleziono.'</p>';
+      for ($i=0;$i<$ile_znaleziono;$i++)
+      {
+        $wiersz = $wynik->fetch_assoc();
+        echo '<p><b>'.($i+1).'. inventary_number: '.stripslashes($wiersz['inventary_number']).'</b><br />';
+        echo 'description: '.stripslashes($wiersz['description']).'<br />';
+        echo 'serial_number: '.stripslashes($wiersz['serial_number']).'<br />';
+		echo 'date_of_purschure: '.stripslashes($wiersz['date_of_purschure']).'<br />';
+		echo 'invoice_id:'.stripslashes($wiersz['invoice_id']).'<br />';
+		echo 'warranty: '.stripslashes($wiersz['warranty']).'<br />';
+        echo 'whos_is_equipment: '.stripslashes($wiersz['whos_is_equipment']).'</p><br />';
+      }
+      $wynik->free();
+      $db->close();
+    ?>
