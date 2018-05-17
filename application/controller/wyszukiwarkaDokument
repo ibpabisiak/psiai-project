@@ -1,0 +1,37 @@
+<?php
+$metoda = $_POST['metoda'];
+$wyrazenie = $_POST['wyrazenie'];
+$wyrazenie = trim($wyrazenie);
+if (!$metoda || !$wyrazenie)
+{
+    echo 'Brak parametrów wyszukiwania, wróć do poprzednej strony i spóbuj ponownie!';
+    exit;
+}
+if (!get_magic_quotes_gpc())
+{
+    $metoda = addslashes($metoda);
+    $wyrazenie = addslashes($wyrazenie);
+}
+@ $db = new mysqli('localhost','psiai','0987654321','psiai_db');
+
+if (mysqli_connect_errno())
+{
+    echo 'Połączenie z bazą nie powiodło się. Spóbuj ponownie';
+    exit;
+}
+$db->query('SET NAMES utf8');
+$db->query('SET CHARACTER_SET utf8_unicode_ci');
+$zapytanie = "select * from files where ".$metoda. " like '%".$wyrazenie."%'";
+$wynik = $db->query($zapytanie);
+$ile_znaleziono = $wynik->num_rows;
+echo '<p> Liczba znalezionych plikow: '.$ile_znaleziono.'</p>';
+for ($i=0;$i<$ile_znaleziono;$i++)
+{
+    $wiersz = $wynik->fetch_assoc();
+    echo '<p><b>'.($i+1).'. id: '.stripslashes($wiersz['id']).'</b><br />';
+    echo 'file_category_id: '.stripslashes($wiersz['file_category_id']).'<br />';
+    echo 'original_filename: '.stripslashes($wiersz['original_filename']).'</p><br />';
+}
+$wynik->free();
+$db->close();
+?>
