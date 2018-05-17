@@ -18,17 +18,14 @@ class Invoices extends Controller {
 	public function add_invoice() {
 		if(Functions::GetUserSession()->IsEntitledToWrite('invoices')) {
             $invoices_model = $this->loadModuleModel('invoices_model');
-            //if(isset($_POST['invoice_name']) && isset($_POST['amount_netto']) && isset($_POST['amount_brutto'])) {
 
-            $a_file = 0;
-            $a_type = 0;
-            $a_name = 0;
-            $a_netto = 0;
-            $a_brutto = 0;
-            $a_tax = 0;
-            $a_number = 0;
-
-
+            $aa_file = 0;
+            $aa_type = 0;
+            $aa_name = 0;
+            $aa_netto = 0;
+            $aa_brutto = 0;
+            $aa_tax = 0;
+            $aa_number = 0;
 
             if (empty($_POST['fileToUpload'])) {
                 $aa_file = 1;
@@ -51,7 +48,7 @@ class Invoices extends Controller {
 
             if (empty($_POST['invoice_name'])) {
                 $name = $_POST['invoice_name'];
-                $a_name = preg_match('/^([a-z|A-Z|0-9]{3,20))&/', $name);
+                $a_name = preg_match('/^([a-z|A-Z|0-9]{3,20))$/', $name);
                 $aa_name = 1;
             } else {
                 $aa_name = 0;
@@ -61,43 +58,40 @@ class Invoices extends Controller {
             if(empty($_POST['invoice_number'])) {
                 $number = $_POST['invoice_number'];
 
-                if (preg_match('/^([0-9]{1,15})&/', $number)) {
-                    $aa_number = 0;
-                } else {
+                if (preg_match('/([0-9]{1,15})/', $number)) {
                     $aa_number = 1;
+                } else {
+                    $aa_number = 0;
                 }
             } else{
-                $aa_number = 1;
+                $aa_number = 0;
             }
 
             if(empty($_POST['amount_netto'])) {
                 $netto = $_POST['amount_netto'];
-                if (preg_match('/^([0-9]{0,5}\\,([0-9]{0-2}))&/', $netto)) {
-                    $aa_netto = 0;
+                $a_netto =preg_match('/^([0-9]{1,5}\,([0-9]{1-2}))$/', $netto);
+                $aa_netto = 1;
                 } else {
-                    $aa_netto = 1;
+                    $aa_netto = 0;
                 }
-            }else{ $aa_netto = 1;
-            }
+
 
             if(empty($_POST['amount_brutto'])) {
                 $brutto = $_POST['amount_brutto'];
-                if (preg_match('/^([0-9]{0,5}\\,([0-9]{0-2}))&/', $brutto)) {
-                    $aa_brutto = 0;
-                } else {
-                    $aa_brutto = 1;
-                }
-            }else{
+                $a_brutto = preg_match('/^([0-9]{0,5}\,([1-9]{1-2}))$/', $brutto);
                 $aa_brutto = 1;
-            }
+                } else {
+                    $aa_brutto = 0;
+                }
+
 
 
             if(empty($_POST['tax_id'])) {
-                $aa_tax = 0;
-            } else { $aa_tax = 1; }
+                $aa_tax = 1;
+            } else { $aa_tax = 0; }
 
 
-            if (  ($aa_type == 0) && ($aa_name ==0) && ($aa_netto==0) && ($aa_brutto==0) && ($aa_tax==0) && ($aa_number ==0) && ($aa_contractor ==0)){
+            if (  ($aa_type == 0) && ($aa_name ==0) && ($aa_netto==0) && ($aa_brutto==0) && ($aa_tax==0) && ($aa_number ==0) ){
 				$invoices_model->AddInvoice(
 					$_FILES["fileToUpload"],
 					$_POST['contractor_id'],
@@ -124,11 +118,39 @@ class Invoices extends Controller {
 
 	public function add_new_contractor() {
 		if(Functions::GetUserSession()->IsEntitledToWrite('invoices')) {
-			if(isset($_POST['contracotr_nip']) && isset($_POST['contractor_name'])) {
+
 				$invoices_model = $this->loadModuleModel('invoices_model');
+
+				$contractor_name = $_POST['contractor_name'];
+                $contractor_nip = $_POST['contracotr_nip'];
+
+                $aa_contractor_name = 0;
+                $aa_contractor_nip = 0;
+
+
+                if (empty($_POST['contractor_name'])) {
+                    $aa_contractor_name = 1;
+                } else {
+                    $aa_contractor_name = 0;
+                }
+
+                if (empty($_POST['contractor_nip'])) {
+                    $a_contractor_nip= preg_match("/^([0-9]{11})$/", $contractor_nip );
+                    if($a_contractor_nip){
+                    $aa_contractor_nip = 0;
+                } else {
+                    $aa_contractor_nip = 1;
+                }} else {$aa_contractor_nip = 1;}
+
+
+                if(($aa_contractor_name == 0) && ($aa_contractor_name==0) ) {
+
 				$invoices_model->AddContractor($_POST['contractor_name'], $_POST['contracotr_nip']);
 				header("Location: index.php?module=invoices");
 			} else {
+                    require 'application/views/_common/header.tpl.php';
+                    require 'application/views/invoices/invoices_validation.tpl.php';
+                    require 'application/views/_common/footer.tpl.php';
 				
 			}
 		} else {

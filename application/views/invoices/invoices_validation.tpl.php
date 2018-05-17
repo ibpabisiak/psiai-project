@@ -17,7 +17,7 @@
                             <label for="formGroupExampleInput">Skrócona nazwa kontrahenta (wymagane):</label>
                             <input name="contractor_name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Nazwa">
                             <?php
-                            if ($aa_name==1) {
+                            if ($aa_contractor_name==1) {
                                 echo "Brak nazwy kontrahenta";
                             }
                             ?>
@@ -27,7 +27,7 @@
                             <label for="formGroupExampleInput2">NIP kontrahenta (opcjonalnie):</label>
                             <input name="contracotr_nip" type="text" class="form-control" id="formGroupExampleInput2" placeholder="NIP">
                             <?php
-                            if ($aa_nip==1) {
+                            if ($aa_contractor_nip==1) {
                                 echo "Podano błędny NIP";
                             }
                             ?>
@@ -66,11 +66,10 @@
                                 <?php echo $contractors_list; ?>
                                 <?php
                                 if ($aa_contractor==1) {
-                                    echo "Nie wybrano kontraheta";
+                                    echo "Nie wybrano kontrahenta";
                                 }
                                 ?>
                             </select>
-
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">Typ faktury:</label>
@@ -103,7 +102,7 @@
 
                             <?php
                             if ($aa_number==1) {
-                                echo "Brak numeru faktury";
+                                echo "Brak numeru fakturyr";
                             }
                             ?>
                         </div>
@@ -141,6 +140,7 @@
                                     echo "Nie wybrano podatku";
                                 }
                                 ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Zapisz w bazie danych</button>
