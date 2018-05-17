@@ -28,4 +28,18 @@
             </tbody>
         </table>
     </div>
+    
+    <h1>Wyszukiwanie sprzetu</h1>
+    <form action="application/controller/wyszukiwarkaEquipment.php" method="post">
+        Wyszukaj według:
+        <select name="metoda">
+            <option value="inventary_number" />inventary_number
+            <option value="serial_number" />serial_number
+            <option value="invoice_id" />invoice_id
+        </select>
+        <br /><br />
+        Szukane wyrażenie:
+        <input type="text" name="wyrazenie" />
+        <input type="submit" name="wyszukaj" />
+    
 </main>
