@@ -63,8 +63,7 @@
                             <label for="formGroupExampleInput2">Kontrahent:</label>
                             <select name="contractor_id" id="inputState" class="form-control">
                                 <option value="0" selected>Wybierz..</option>
-                                <?php echo $contractors_list; ?>
-                                <?php
+                                <?php echo $contractors_list;
                                 if ($aa_contractor==1) {
                                     echo "Nie wybrano kontrahenta";
                                 }
@@ -134,8 +133,8 @@
                             <select name="tax_id" id="inputState" class="form-control">
                                 <option value="0" selected>Wybierz..</option>
 
-                                <?php echo $taxes_?>
-                                <?php
+                                <?php echo $taxes_list;
+
                                 if ($aa_tax==1) {
                                     echo "Nie wybrano podatku";
                                 }

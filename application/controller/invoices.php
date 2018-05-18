@@ -7,8 +7,7 @@ class Invoices extends Controller {
 	public function index() {
 
 		$invoices_model = $this->loadModuleModel('invoices_model');
-		$contractors_list = $invoices_model->LoadContractorsList();
-		$taxes_list = $invoices_model->LoadTaxesList();
+
 
 		require 'application/views/_common/header.tpl.php';
         require 'application/views/invoices/invoices_index.tpl.php';
@@ -17,7 +16,10 @@ class Invoices extends Controller {
 
 	public function add_invoice() {
 		if(Functions::GetUserSession()->IsEntitledToWrite('invoices')) {
+
             $invoices_model = $this->loadModuleModel('invoices_model');
+            $contractors_list = $invoices_model->LoadContractorsList();
+            $taxes_list = $invoices_model->LoadTaxesList();
 
             $aa_file = 0;
             $aa_type = 0;
@@ -102,6 +104,8 @@ class Invoices extends Controller {
 					$_POST['tax_id'],
 					$_POST['invoice_number']
 				);
+                header("Location: index.php?module=invoices&page=invoicescatalog");
+
 			} else {
                 require 'application/views/_common/header.tpl.php';
                 require 'application/views/invoices/invoices_validation.tpl.php';
@@ -145,7 +149,7 @@ class Invoices extends Controller {
 
                 if(($aa_contractor_name == 0) && ($aa_contractor_name==0) ) {
 
-				$invoices_model->AddContractor($_POST['contractor_name'], $_POST['contracotr_nip']);
+				$invoices_model->AddContractor($_POST['contractor_name'], $_POST['contractor_nip']);
 				header("Location: index.php?module=invoices");
 			} else {
                     require 'application/views/_common/header.tpl.php';
